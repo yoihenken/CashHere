@@ -1,0 +1,31 @@
+DELIMITER $$
+CREATE TRIGGER trigger_add_pesanan 
+    AFTER INSERT ON pesanan
+    FOR EACH ROW 
+BEGIN
+
+    declare var_id_pesanan int;
+    declare var_no_meja int;
+    declare var_jumlah_harga int;
+    declare var_tanggal_order date;
+
+    declare var_id_data int;
+    declare var_id_pesanan_data int;
+
+    SELECT id_pesanan, no_meja, jumlah_harga, tanggal_order 
+        INTO var_id_pesanan, var_no_meja, var_jumlah_harga, var_tanggal_order
+        FROM pesanan WHERE LAST_VALUE(id_pesanan) ORDER BY id_pesanan DESC LIMIT 1;
+
+    SELECT id_pesanan 
+    	INTO var_id_pesanan_data
+        FROM data_pesanan WHERE id_pesanan = var_id_pesanan;
+
+    IF	var_id_pesanan_data = var_id_pesanan THEN
+        UPDATE data_pesanan SET total_harga = (total_harga + var_jumlah_harga) WHERE id_pesanan = var_id_pesanan;
+    ELSE
+        INSERT INTO data_pesanan(`id_pesanan`, `no_meja`, `total_harga`, `tanggal_order`) 
+            VALUES(var_id_pesanan, var_no_meja, var_jumlah_harga, var_tanggal_order);
+    END IF;
+
+END $$
+DELIMITER ;
