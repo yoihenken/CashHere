@@ -7,28 +7,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
-   <top>
-      <Pane prefHeight="33.0" prefWidth="600.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="459.0" layoutY="6.0" text="CashHere" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-               <effect>
-                  <Bloom threshold="0.0" />
-               </effect>
-            </Label>
-         </children>
-      </Pane>
-   </top>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1218.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: C4C4C4;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="33.0" prefWidth="100.0" text="Kategori" textAlignment="CENTER" textFill="#2c2c2c">
+            <Label alignment="CENTER" prefHeight="49.0" prefWidth="100.0" text="CashHere" textAlignment="CENTER" textFill="#ebebeb">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
+               <effect>
+                  <Bloom />
+               </effect>
             </Label>
             <Button fx:id="btnSemua" mnemonicParsing="false" onAction="#btnSemua" prefHeight="25.0" prefWidth="105.0" text="Semua" textAlignment="CENTER">
                <VBox.margin>
@@ -42,7 +31,7 @@
       </VBox>
    </left>
    <center>
-      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" prefHeight="400.0" prefWidth="725.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="nama" minWidth="100.0" prefWidth="200.0" text="Nama" />
@@ -54,4 +43,29 @@
         </columns>
       </TableView>
    </center>
+   <right>
+      <VBox prefHeight="400.0" prefWidth="403.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="14.0" prefWidth="403.0" style="-fx-background-color: purple;">
+               <children>
+                  <Label alignment="CENTER" layoutX="152.0" prefHeight="25.0" prefWidth="100.0" text="Pesanan" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tablePesanan" prefHeight="302.0" prefWidth="299.0">
+              <columns>
+                <TableColumn fx:id="id_pesan" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="jumlah_pesan" prefWidth="75.0" text="Jumlah" />
+                  <TableColumn fx:id="harga_pesan" prefWidth="75.0" text="Harga" />
+                  <TableColumn fx:id="catatan_pesan" prefWidth="103.0" text="Catatan" />
+                  <TableColumn fx:id="hapus_pesan" prefWidth="75.0" text="Hapus" />
+              </columns>
+            </TableView>
+            <AnchorPane prefHeight="120.0" prefWidth="299.0" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>

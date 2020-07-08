@@ -46,13 +46,22 @@
    <right>
       <VBox prefHeight="400.0" prefWidth="403.0" BorderPane.alignment="CENTER">
          <children>
+            <AnchorPane prefHeight="14.0" prefWidth="403.0" style="-fx-background-color: purple;">
+               <children>
+                  <Label alignment="CENTER" layoutX="152.0" prefHeight="25.0" prefWidth="100.0" text="Pesanan" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
             <TableView fx:id="tablePesanan" prefHeight="302.0" prefWidth="299.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="ID" />
-                <TableColumn prefWidth="75.0" text="Jumlah" />
-                  <TableColumn prefWidth="75.0" text="Harga" />
-                  <TableColumn prefWidth="103.0" text="Catatan" />
-                  <TableColumn prefWidth="75.0" text="Hapus" />
+                <TableColumn fx:id="id_pesan" prefWidth="75.0" text="ID" />
+                <TableColumn fx:id="jumlah_pesan" prefWidth="75.0" text="Jumlah" />
+                  <TableColumn fx:id="harga_pesan" prefWidth="75.0" text="Harga" />
+                  <TableColumn fx:id="catatan_pesan" prefWidth="103.0" text="Catatan" />
+                  <TableColumn fx:id="hapus_pesan" prefWidth="75.0" text="Hapus" />
               </columns>
             </TableView>
             <AnchorPane prefHeight="120.0" prefWidth="299.0" />
