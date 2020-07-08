@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <top>
       <Pane prefHeight="33.0" prefWidth="600.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="259.0" layoutY="6.0" text="CashHere" textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="459.0" layoutY="6.0" text="CashHere" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial" size="18.0" />
                </font>
@@ -45,10 +45,12 @@
       <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="nama" minWidth="-1.0" prefWidth="75.0" text="Nama" />
-            <TableColumn fx:id="kategori" prefWidth="75.0" text="Kategori" />
-            <TableColumn fx:id="harga" prefWidth="75.0" text="Harga" />
-            <TableColumn fx:id="status" prefWidth="75.0" text="Status" />
+          <TableColumn fx:id="nama" minWidth="100.0" prefWidth="200.0" text="Nama" />
+            <TableColumn fx:id="kategori" text="Kategori" />
+            <TableColumn fx:id="harga" text="Harga" />
+            <TableColumn fx:id="status" prefWidth="130.0" text="Status" />
+            <TableColumn fx:id="jumlah" prefWidth="75.0" text="Jumlah" />
+            <TableColumn fx:id="tambah" prefWidth="75.0" />
         </columns>
       </TableView>
    </center>
