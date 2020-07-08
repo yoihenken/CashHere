@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <top>
-      <Pane cacheShape="false" prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: purple; -fx-background-position: center;">
+      <Pane prefHeight="33.0" prefWidth="600.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" style="-fx-alignment: center;" text="CashHere" textAlignment="CENTER" textFill="#f8f8f8" wrapText="true">
+            <Label layoutX="259.0" layoutY="6.0" text="CashHere" textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Arial" size="18.0" />
                </font>
                <effect>
-                  <Bloom threshold="0.07" />
+                  <Bloom threshold="0.0" />
                </effect>
             </Label>
          </children>
-         <cursor>
-            <Cursor fx:constant="DEFAULT" />
-         </cursor>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
       </Pane>
    </top>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: C4C4C4;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="100.0" text="Kategori" textAlignment="CENTER" textFill="#2c2c2c">
+               <font>
+                  <Font name="Arial Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnSemua" mnemonicParsing="false" onAction="#btnSemua" prefHeight="25.0" prefWidth="105.0" text="Semua" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnMakanan" mnemonicParsing="false" onAction="#btnMakan" prefHeight="25.0" prefWidth="117.0" text="Makanan" />
+            <Button fx:id="btnMinuman" mnemonicParsing="false" onAction="#btnMinum" prefHeight="25.0" prefWidth="122.0" text="Minuman" />
+            <Button fx:id="btnPaket" mnemonicParsing="false" onAction="#btnPaket" prefHeight="25.0" prefWidth="119.0" text="Paket" />
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="nama" minWidth="-1.0" prefWidth="75.0" text="Nama" />
+            <TableColumn fx:id="kategori" prefWidth="75.0" text="Kategori" />
+            <TableColumn fx:id="harga" prefWidth="75.0" text="Harga" />
+            <TableColumn fx:id="status" prefWidth="75.0" text="Status" />
+        </columns>
+      </TableView>
+   </center>
 </BorderPane>
