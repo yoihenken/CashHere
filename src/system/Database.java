@@ -34,7 +34,7 @@ public class Database {
         return resultSet;
     }
 
-    // Execute query data
+    // Execute query
     public void setData(String query){
         try{
             statement.executeUpdate(query);

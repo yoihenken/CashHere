@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    //Declare
+    //Declaration
     //Dashboard
     @FXML private TableView<casher> table;
     @FXML private TableColumn<casher, String> id;
@@ -50,12 +50,13 @@ public class MainController implements Initializable {
     @FXML private Button buttonMinum;
     @FXML private Button buttonPaket;
 
+    //Database
     private int counter = 0;
     private Database database = new Database();
     private ResultSet resultSet = database.getData("Select * from daftar_menu;");;
     private static ObservableList<casher> list = FXCollections.observableArrayList();
 
-    //Fill Data table List Menu
+    //Fill Data table List Menu based button category
     private void getDataSemua(){
         try{
             ResultSet resultSet = database.getData("Select * from daftar_menu;");
@@ -137,7 +138,7 @@ public class MainController implements Initializable {
         }
     }
 
-    //Event handler List Menu
+    //Event handler Button
     public void btnSemua(ActionEvent event){
         counter = 0;
         initTable();
@@ -164,16 +165,19 @@ public class MainController implements Initializable {
 
     public void btnBayar(ActionEvent event){
         try{
-            ResultSet rs_idPesanan = database.getData("SELECT id_pesanan FROM `pesanan` WHERE LAST_VALUE(id_pesanan) ORDER BY id_pesanan DESC LIMIT 1");
-            rs_idPesanan.next();
-            System.out.println("RS: " + rs_idPesanan.getString(1));
-            int idPesanan = (rs_idPesanan.getInt(1) + 1 );
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            //Declaration Database
+            //id_Pesanan
+            ResultSet rs_idPesanan = database.getData("SELECT id_pesanan FROM `pesanan` WHERE LAST_VALUE(id_pesanan) ORDER BY id_pesanan DESC LIMIT 1"); //Get id_Pesanan from table Pesanan (Database)
+            rs_idPesanan.next(); // Important
+            System.out.println("RS: " + rs_idPesanan.getString(1)); //print return
+            int idPesanan = (rs_idPesanan.getInt(1) + 1 ); //Get new id_Pesanan for new Order
+            //tanggal_order
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //Format for Date Database
             Date date = new Date();
-            String dateData = formatter.format(date);
-            System.out.println(formatter.format(date));
+            String dateData = formatter.format(date); //Var for query
+            System.out.println(formatter.format(date)); // print return
 
-
+            //Start Insert Data
             for (int i = 0; i < list_order.size(); i++) {
                 list_order.get(i).getId();
                 list_order.get(i).getJumlah();
@@ -186,19 +190,20 @@ public class MainController implements Initializable {
                             list_order.get(i).getJumlah() + "', '" + list_order.get(i).getHarga() + "', '" +
                             list_order.get(i).getCatatan() + "', '" + txMeja.getText() + "', '" + dateData + "');";
 
-                    System.out.println(query);
+                System.out.println(query); //print return
                 database.setData(query);
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
         }
 
-        //Fillout
+        //After Click Button
         list_order.clear();
         txMeja.setText("");
         totalHarga.setText("Rp. 0");
     }
 
+    //Decision of category Button
     public void initTable(){
         if(counter == 0){
             getDataSemua();
@@ -226,6 +231,7 @@ public class MainController implements Initializable {
 
     //Fill data table Order
     public void initTable_Pesanan(){
+        //Set cell TableView
         id_pesan.setCellValueFactory(new PropertyValueFactory<Order, String>("Id"));
         jumlah_pesan.setCellValueFactory(new PropertyValueFactory<Order, String>("Jumlah"));
         harga_pesan.setCellValueFactory(new PropertyValueFactory<Order, Integer>("Harga"));
@@ -239,6 +245,7 @@ public class MainController implements Initializable {
             event.getTableView().getItems().get(event.getTablePosition().getRow()).setCatatan(event.getNewValue());
         });
         tablePesanan.setEditable(true);
+        //Set TableView
         tablePesanan.setItems(list_order);
     }
 

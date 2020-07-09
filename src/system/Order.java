@@ -13,28 +13,29 @@ public class Order {
         private String catatan;
         private Button hapus;
 
+        //construct
         public Order(String id, int jumlah, int harga, String catatan, Button hapus) {
                 this.id = id;
                 this.jumlah = jumlah;
                 this.harga = harga;
                 this.catatan = catatan;
                 this.hapus = hapus;
-
+                //Get data from list
                 hapus.setOnAction(event -> {
                         MainController mainController = new MainController();
                         try {
                                 for (Order order : MainController.getList_order()){
-                                   if(order.getHapus() == hapus){
-
+                                   if(order.getHapus() == hapus){ //Checkin if the true button
+                                                //Get data from list_order
                                                 ObservableList<Order> list_order = MainController.getList_order();
-                                                int mark = 0;
-                                                for (int i = 0; i < list_order.size(); i++) {
+                                                int mark = 0;                                   //var for order id
+                                                for (int i = 0; i < list_order.size(); i++) {   //get list ID
                                                         if (list_order.get(i).getId() == order.getId()){
                                                                 mark = i;
                                                         }
                                                 }
-                                                list_order.remove(mark);
-                                                mainController.setList_order(list_order);
+                                                list_order.remove(mark);                //remove data based list id
+                                                mainController.setList_order(list_order); //update list_order
                                         }
                                    }
                         }catch (ConcurrentModificationException e) {

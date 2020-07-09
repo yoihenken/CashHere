@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import sample.MainController;
 
 
@@ -16,8 +15,8 @@ public class casher {
     private final SimpleIntegerProperty harga;
     private final SimpleStringProperty status;
     Button tambah;
-    Label totalHarga;
 
+    //Construct
     public casher(String id, String nama, String kategori, int harga, String status, Button tambah) {
         this.id = new SimpleStringProperty(id) ;
         this.nama = new SimpleStringProperty(nama) ;
@@ -26,28 +25,29 @@ public class casher {
         this.status = new SimpleStringProperty(status) ;
         this.tambah = tambah;
 
-
+        //Event on Click button Tambah
         tambah.setOnAction(event -> {
             MainController mainController = new MainController();
             for (casher cas : MainController.getList()) {
-                if (cas.getTambah() == tambah){
+                if (cas.getTambah() == tambah){             //Checkin if the true button
 //                    System.out.println("id_menu\t: " + cas.getId());
 //                    System.out.println("nama\t: " + cas.getNama());
 //                    System.out.println("kategori\t: " + cas.getKategori());
 //                    System.out.println("harga\t: " + cas.getHarga());
 //                    System.out.println("status\t: " + cas.getStatus());
                     try {
+                        //Get data from list
                         ObservableList<Order> list_order = MainController.getList_order();
                         int counter = 0;
                         int mark = 0;
                         for (int i = 0; i < list_order.size(); i++) {
-                            if (list_order.get(i).getId() == cas.getId()){
-                                counter = 1;
-                                mark = i;
+                            if (list_order.get(i).getId() == cas.getId()){ //Checkin if has the same order ID
+                                counter = 1;    // number for switch
+                                mark = i;     //get list Id
                             }
                         }
                         switch (counter){
-                            case 0 :
+                            case 0 :  // If dont have same order ID
                                 System.out.println("falsemint");
                                 list_order.add(
                                         new Order(
@@ -58,7 +58,7 @@ public class casher {
                                                 new Button("Hapus"))
                                 );
                                 break;
-                            case 1:
+                            case 1: // if have same order ID
                                 System.out.println("truemint");
                                 int jumlah_list = list_order.get(mark).getJumlah() + 1;
                                 Order order = new Order(
@@ -71,8 +71,8 @@ public class casher {
                                 list_order.set(mark, order);
                                 break;
                         }
-                        MainController.setList_order(list_order);
-                        mainController.initTable_Pesanan();
+                        MainController.setList_order(list_order); //Update list_order
+                        mainController.initTable_Pesanan(); //update table Order
                     }catch (NullPointerException e){
                         System.out.println(e.getMessage());
                     }
