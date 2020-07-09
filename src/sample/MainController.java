@@ -161,10 +161,22 @@ public class MainController implements Initializable {
 
     public void btnHitung(ActionEvent event){
         totalPrice();
+        buttonBayar.setDisable(false);
     }
 
     public void btnBayar(ActionEvent event){
         try{
+            if (list_order.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Belum Terisi !");
+                alert.setHeaderText("Pilih pesanan terlebih dahulu !");
+                alert.setContentText("Tanyakan Pelanggan pesanannya dan pastikan tidak salah memasukkan pesanan !");
+
+                alert.showAndWait();
+                buttonBayar.setDisable(true);
+                return;
+            }
+            totalPrice();
             //Declaration Database
             //id_Pesanan
             ResultSet rs_idPesanan = database.getData("SELECT id_pesanan FROM `pesanan` WHERE LAST_VALUE(id_pesanan) ORDER BY id_pesanan DESC LIMIT 1"); //Get id_Pesanan from table Pesanan (Database)
@@ -179,19 +191,24 @@ public class MainController implements Initializable {
 
             //Start Insert Data
             for (int i = 0; i < list_order.size(); i++) {
-                list_order.get(i).getId();
-                list_order.get(i).getJumlah();
-                list_order.get(i).getHarga();
-                list_order.get(i).getCatatan();
+                //Check if no.meja field is null
+                if (txMeja.getText().equals("")) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Belum terisi !");
+                    alert.setHeaderText("Nomor Meja belum terisi !");
+                    alert.setContentText("Isi terlebih dahulu nomor meja pelanggan!");
 
-                String query = "" +
-                        "INSERT INTO `pesanan`(`id_pesanan`, `id_menu`, `jumlah`, `jumlah_harga`, `catatan`, `no_meja`, `tanggal_order`) " +
-                        "VALUES (" + idPesanan + ", '"+ list_order.get(i).getId() + "', '" +
-                            list_order.get(i).getJumlah() + "', '" + list_order.get(i).getHarga() + "', '" +
-                            list_order.get(i).getCatatan() + "', '" + txMeja.getText() + "', '" + dateData + "');";
+                    alert.showAndWait();
+                }else{ // if false, then
+                    String query = "" +
+                            "INSERT INTO `pesanan`(`id_pesanan`, `id_menu`, `jumlah`, `jumlah_harga`, `catatan`, `no_meja`, `tanggal_order`) " +
+                            "VALUES (" + idPesanan + ", '"+ list_order.get(i).getId() + "', '" +
+                                list_order.get(i).getJumlah() + "', '" + list_order.get(i).getHarga() + "', '" +
+                                list_order.get(i).getCatatan() + "', '" + txMeja.getText() + "', '" + dateData + "');";
 
-                System.out.println(query); //print return
-                database.setData(query);
+                    System.out.println(query); //print return
+                    database.setData(query);
+                }
             }
         }catch (SQLException e){
             System.out.println(e.getMessage());
@@ -201,6 +218,7 @@ public class MainController implements Initializable {
         list_order.clear();
         txMeja.setText("");
         totalHarga.setText("Rp. 0");
+        buttonBayar.setDisable(true);
     }
 
     //Decision of category Button
@@ -269,8 +287,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initTable();
-        //list_order.add( new Order("TEST", 1, 10000, null, new Button("Hapus")));
         initTable_Pesanan();
+        buttonBayar.setDisable(true);
     }
 
     public static ObservableList<casher> getList() {

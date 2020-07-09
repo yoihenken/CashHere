@@ -1,5 +1,7 @@
 package system;
 
+import javafx.scene.control.Alert;
+
 import javax.swing.*;
 import java.sql.*;
 
@@ -19,8 +21,13 @@ public class Database {
             System.out.println("Database Connected");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-            JOptionPane.showMessageDialog(null,""+throwables.getMessage(),
-                    "Database Connect Error", JOptionPane.WARNING_MESSAGE);
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Database !");
+            alert.setHeaderText("Failed to Connect Database !");
+            alert.setContentText(throwables.getMessage());
+
+            alert.showAndWait();
         }
     }
     // Get Data from Database
@@ -28,8 +35,12 @@ public class Database {
         try {
             resultSet = statement.executeQuery(query);
         }catch (SQLException throwables){
-            JOptionPane.showMessageDialog(null,""+throwables.getMessage(),
-                    "\nFailed to Get Data", JOptionPane.WARNING_MESSAGE);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Database !");
+            alert.setHeaderText("Failed to Get Data from Database !");
+            alert.setContentText(throwables.getMessage());
+
+            alert.showAndWait();
         }
         return resultSet;
     }
@@ -39,8 +50,12 @@ public class Database {
         try{
             statement.executeUpdate(query);
         }catch (SQLException throwables){
-            JOptionPane.showMessageDialog(null,"Error" + throwables.getMessage(),
-                    "\nFailed to upload Query! ", JOptionPane.WARNING_MESSAGE);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Database !");
+            alert.setHeaderText("Failed to Upload Query to Database !");
+            alert.setContentText(throwables.getMessage());
+
+            alert.showAndWait();
         }
     }
 

@@ -81,12 +81,12 @@
                            <children>
                               <Label prefHeight="36.0" prefWidth="161.0" text=" Total Pembayaran" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="18.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                               <Label fx:id="totalHarga" alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="235.0" text="Rp. 0" textFill="WHITE">
                                  <font>
-                                    <Font name="System Bold" size="18.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                            </children>
