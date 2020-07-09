@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import sample.MainController;
 
 
@@ -15,6 +16,7 @@ public class casher {
     private final SimpleIntegerProperty harga;
     private final SimpleStringProperty status;
     Button tambah;
+    Label totalHarga;
 
     public casher(String id, String nama, String kategori, int harga, String status, Button tambah) {
         this.id = new SimpleStringProperty(id) ;
@@ -24,15 +26,16 @@ public class casher {
         this.status = new SimpleStringProperty(status) ;
         this.tambah = tambah;
 
+
         tambah.setOnAction(event -> {
             MainController mainController = new MainController();
             for (casher cas : MainController.getList()) {
                 if (cas.getTambah() == tambah){
-                    System.out.println("id_menu\t: " + cas.getId());
-                    System.out.println("nama\t: " + cas.getNama());
-                    System.out.println("kategori\t: " + cas.getKategori());
-                    System.out.println("harga\t: " + cas.getHarga());
-                    System.out.println("status\t: " + cas.getStatus());
+//                    System.out.println("id_menu\t: " + cas.getId());
+//                    System.out.println("nama\t: " + cas.getNama());
+//                    System.out.println("kategori\t: " + cas.getKategori());
+//                    System.out.println("harga\t: " + cas.getHarga());
+//                    System.out.println("status\t: " + cas.getStatus());
                     try {
                         ObservableList<Order> list_order = MainController.getList_order();
                         int counter = 0;

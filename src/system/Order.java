@@ -21,6 +21,7 @@ public class Order {
                 this.hapus = hapus;
 
                 hapus.setOnAction(event -> {
+                        MainController mainController = new MainController();
                         try {
                                 for (Order order : MainController.getList_order()){
                                    if(order.getHapus() == hapus){
@@ -33,8 +34,7 @@ public class Order {
                                                         }
                                                 }
                                                 list_order.remove(mark);
-                                                MainController.setList_order(list_order);
-
+                                                mainController.setList_order(list_order);
                                         }
                                    }
                         }catch (ConcurrentModificationException e) {

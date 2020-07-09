@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1218.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="1145.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainController">
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER">
          <children>
@@ -19,32 +19,31 @@
                   <Bloom />
                </effect>
             </Label>
-            <Button fx:id="btnSemua" mnemonicParsing="false" onAction="#btnSemua" prefHeight="25.0" prefWidth="105.0" text="Semua" textAlignment="CENTER">
+            <Button fx:id="btnSemua" mnemonicParsing="false" onAction="#btnSemua" prefHeight="25.0" prefWidth="105.0" style="-fx-background-radius: 0;" text="Semua" textAlignment="CENTER">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="btnMakanan" mnemonicParsing="false" onAction="#btnMakan" prefHeight="25.0" prefWidth="117.0" text="Makanan" />
-            <Button fx:id="btnMinuman" mnemonicParsing="false" onAction="#btnMinum" prefHeight="25.0" prefWidth="122.0" text="Minuman" />
-            <Button fx:id="btnPaket" mnemonicParsing="false" onAction="#btnPaket" prefHeight="25.0" prefWidth="119.0" text="Paket" />
+            <Button fx:id="btnMakanan" mnemonicParsing="false" onAction="#btnMakan" prefHeight="25.0" prefWidth="117.0" style="-fx-background-radius: 0;" text="Makanan" />
+            <Button fx:id="btnMinuman" mnemonicParsing="false" onAction="#btnMinum" prefHeight="25.0" prefWidth="122.0" style="-fx-background-radius: 0;" text="Minuman" />
+            <Button fx:id="btnPaket" mnemonicParsing="false" onAction="#btnPaket" prefHeight="25.0" prefWidth="119.0" style="-fx-background-radius: 0;" text="Paket" />
          </children>
       </VBox>
    </left>
    <center>
-      <TableView fx:id="table" prefHeight="400.0" prefWidth="725.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" prefHeight="420.0" prefWidth="637.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="nama" minWidth="100.0" prefWidth="200.0" text="Nama" />
             <TableColumn fx:id="kategori" text="Kategori" />
             <TableColumn fx:id="harga" text="Harga" />
             <TableColumn fx:id="status" prefWidth="130.0" text="Status" />
-            <TableColumn fx:id="jumlah" prefWidth="75.0" text="Jumlah" />
             <TableColumn fx:id="tambah" prefWidth="75.0" />
         </columns>
       </TableView>
    </center>
    <right>
-      <VBox prefHeight="400.0" prefWidth="403.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="488.0" prefWidth="403.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="14.0" prefWidth="403.0" style="-fx-background-color: purple;">
                <children>
@@ -64,7 +63,52 @@
                   <TableColumn fx:id="hapus_pesan" prefWidth="75.0" text="Hapus" />
               </columns>
             </TableView>
-            <AnchorPane prefHeight="120.0" prefWidth="299.0" />
+            <Pane prefHeight="89.0" prefWidth="403.0">
+               <children>
+                  <VBox prefHeight="105.0" prefWidth="405.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="96.0" text=" No.Meja">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="txMeja" prefHeight="25.0" prefWidth="307.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="33.0" prefWidth="405.0" style="-fx-background-color: purple;">
+                           <children>
+                              <Label prefHeight="36.0" prefWidth="161.0" text=" Total Pembayaran" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="totalHarga" alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="235.0" text="Rp. 0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="83.0" prefWidth="405.0">
+                           <children>
+                              <Button fx:id="buttonHitung" mnemonicParsing="false" onAction="#btnHitung" prefHeight="52.0" prefWidth="88.0" style="-fx-background-color: yellow;" text="Hitung">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="buttonBayar" mnemonicParsing="false" onAction="#btnBayar" prefHeight="58.0" prefWidth="318.0" style="-fx-background-radius: 0; -fx-border-width: 0; -fx-background-color: #3D3495;" text="Bayar" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
          </children>
       </VBox>
    </right>

@@ -37,7 +37,7 @@ public class Database {
     // Execute query data
     public void setData(String query){
         try{
-            statement.executeQuery(query);
+            statement.executeUpdate(query);
         }catch (SQLException throwables){
             JOptionPane.showMessageDialog(null,"Error" + throwables.getMessage(),
                     "\nFailed to upload Query! ", JOptionPane.WARNING_MESSAGE);
